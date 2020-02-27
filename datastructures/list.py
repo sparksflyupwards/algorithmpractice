@@ -26,8 +26,19 @@ class NodeList:
         while not currentNode == None:
             print(currentNode.value)
             currentNode = currentNode.next
+    def reverseList(self):
+        prevNode = None
+        nextNode = None
+        currentNode = self.head
 
-def reverseList(list):
+        while not currentNode == None:
+            nextNode = currentNode.next
+            currentNode.next = prevNode
+            prevNode = currentNode
+            currentNode = nextNode
+        self.head = prevNode
+        self.printNodes()
+def reverseListOld(list):
         tempHead = list.head
         tempList = []
         reversedList = []
@@ -50,4 +61,4 @@ l.addNode(Node(4))
 l.addNode(Node(5))
 #l.printNodes()
 
-reverseList(l)
+l.reverseList()
