@@ -5,7 +5,6 @@ class Node:
 
 
 class NodeList:
-    
     def __init__(self,val):
         self.head = Node(val)
         self.tailNode = None
@@ -28,9 +27,27 @@ class NodeList:
             print(currentNode.value)
             currentNode = currentNode.next
 
-l = NodeList(2)
+def reverseList(list):
+        tempHead = list.head
+        tempList = []
+        reversedList = []
+        while(not tempHead == None):
+            tempList.append(tempHead.value)
+            tempHead = tempHead.next
+        
+        for i in range(len(tempList)):
+            reversedList.append(tempList[len(tempList)-1-i])
+        reversedLinkedList = NodeList( reversedList.pop(0))
+        reversedLinkedList.addNode(Node(reversedList.pop(0)))
+        for j in range(len(reversedList)):
+            reversedLinkedList.addNode(Node(reversedList[j]))
+        reversedLinkedList.printNodes()
+
+l = NodeList(1)
+l.addNode(Node(2))
 l.addNode(Node(3))
+l.addNode(Node(4))
 l.addNode(Node(5))
-l.addNode(Node(0))
-l.addNode(Node(3))
-l.printNodes()
+#l.printNodes()
+
+reverseList(l)
