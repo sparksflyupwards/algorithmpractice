@@ -5,7 +5,6 @@ class Node:
 
 
 class NodeList:
-    
     def __init__(self,*args):
         if len(args)>0:
             if isinstance(args[0], int):
@@ -34,10 +33,11 @@ class NodeList:
 
     def printNodes(self):
         currentNode = self.head
-
+        node_arry = []
         while not currentNode == None:
-            print(currentNode.value)
+            node_arry.append(currentNode.value)
             currentNode = currentNode.next
+        print(node_arry)
     def reverseList(self):
         prevNode = None
         nextNode = None
@@ -50,6 +50,10 @@ class NodeList:
             currentNode = nextNode
         self.head = prevNode
         self.printNodes()
+
+    
+
+
 def reverseListOld(list):
         tempHead = list.head
         tempList = []
@@ -106,5 +110,8 @@ l2 = NodeList(1)
 l2.addNode(Node(3))
 l2.addNode(Node(44))
 
-third_list = mergeLists(l,l2)
-third_list.printNodes()
+from pydub import AudioSegment
+from pydub.playback import play
+
+song = AudioSegment.from_wav("sound.wav")
+play(song)
