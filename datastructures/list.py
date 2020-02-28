@@ -10,6 +10,8 @@ class NodeList:
         self.tailNode = None
 
         self.head.next=self.tailNode
+    def getHeadNode(self):
+        return self.head
     def addNode(self,_node):
         if not self.tailNode == None:
             temp_node = self.tailNode
@@ -54,11 +56,39 @@ def reverseListOld(list):
             reversedLinkedList.addNode(Node(reversedList[j]))
         reversedLinkedList.printNodes()
 
+def mergeLists(l1,l2):
+    l1_head= l1.getHeadNode()
+    l2_head= l2.getHeadNode()
+
+    while not l1_head == None or not l2_head == None:
+        
+        if not l1_head == None and not l2_head == None:
+            if l1_head.value < l2_head.value:
+                print(l1.head.value)
+                l1_head = l1_head.next
+                continue
+            else:
+                print(l2.head.value)
+                l2_head = l2_head.next
+                continue
+
+            if not l1_head == None:
+                print(l1_head.value)
+                l1_head = l1_head.next
+                continue
+            if not l2_head == None:
+                print(l2_head.value)
+                l2_head = l2_head.next
+                continue
+        
 l = NodeList(1)
 l.addNode(Node(2))
 l.addNode(Node(3))
 l.addNode(Node(4))
 l.addNode(Node(5))
 #l.printNodes()
+l2 = NodeList(1)
+l2.addNode(Node(3))
+l2.addNode(Node(44))
 
-l.reverseList()
+mergeLists(l,l2)
