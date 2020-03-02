@@ -5,18 +5,28 @@ class Node:
 
 
 class NodeList:
+    ##initializer takes args object. if List initialized with int it generates a new node for the List
+    # with the passed value else if a Node was passed the Node list object mirrors the list the passed Node belongs to.
     def __init__(self,*args):
         if len(args)>0:
             if isinstance(args[0], int):
                 self.head = Node(args[0])
-                self.tailNode = None
-                self.head.next=self.tailNode
+                if self.head.next == None:
+                    self.tailNode = None
+                    self.head.next=self.tailNode
+            elif isinstance(args[0], Node):
+                self.head = args[0]
+                temp_node = self.head
+                while not temp_node == None:
+                    temp_node = temp_node.next
+                self.tailNode = temp_node
         else:
             self.head = None
             self.tailNode = None
            
     def getHeadNode(self):
         return self.head
+
     def addNode(self,_node):
         if self.head == None:
             self.head = _node
@@ -30,7 +40,7 @@ class NodeList:
         else:
             self.tailNode = _node
             self.head.next = self.tailNode
-
+    #prints the current list as an array
     def printNodes(self):
         currentNode = self.head
         node_arry = []
@@ -38,6 +48,7 @@ class NodeList:
             node_arry.append(currentNode.value)
             currentNode = currentNode.next
         print(node_arry)
+
     def reverseList(self):
         prevNode = None
         nextNode = None
@@ -51,6 +62,39 @@ class NodeList:
         self.head = prevNode
         self.printNodes()
 
+    def sum(self):
+        currentNode = self.head
+        sum = 0
+        while not currentNode == None:
+            sum = sum + currentNode.value
+            currentNode = currentNode.next
+        return sum
+    # deletes all duplicate entries in the array if the array is sorted    
+    def deleteDuplicates(self):
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        """
+        if self.head == None:
+            return None
+        prevNode = self.head
+        currentNode = self.head.next
+        
+        while not currentNode == None:
+            nextNode = currentNode.next
+            print(str(prevNode.value)+ " "+str(currentNode.value))
+            
+            if prevNode.value == currentNode.value:
+                prevNode.next = nextNode
+                currentNode = currentNode.next
+                
+            else:
+                prevNode = prevNode.next
+                currentNode = currentNode.next
+                
+                
+            
+        return NodeList(self.head)
     
 
 
@@ -100,18 +144,15 @@ def mergeLists(l1,l2):
                 third_list.addNode(Node(l2_head.value))
                 l2_head = l2_head.next
     return third_list
-        
-l = NodeList(1)
-l.addNode(Node(2))
-l.addNode(Node(3))
-l.addNode(Node(4))
-l.addNode(Node(5))
+
+l1 = NodeList(0)  
 l2 = NodeList(1)
-l2.addNode(Node(3))
-l2.addNode(Node(44))
+#mergeLists(l1,l2).printNodes()     
 
-from pydub import AudioSegment
-from pydub.playback import play
+l1.addNode(Node(0))
+l1.addNode(Node(1))
+l1.addNode(Node(1))
+l1.deleteDuplicates().printNodes()
 
-song = AudioSegment.from_wav("sound.wav")
-play(song)
+
+
