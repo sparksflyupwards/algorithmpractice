@@ -3,6 +3,8 @@ let plants = ["Apple Tree","Garlic Grass","Tulips"];
 
 let toTen = [1,2,3,4,5,6,7,8,9,10];
 let toFive = [1,2,3,4,5]
+
+/** 
 //concat
 console.log("concat cars and plants: "+cars.concat(plants))
 
@@ -23,3 +25,17 @@ Array.from("this string",
              if(!["a","e","i","o","u"].includes(String(elem))){
                  console.log(elem)
              }})
+*/
+
+
+//reduce
+
+console.log(toTen.reduce(
+    (total, num)=>{
+        
+        if (num % 2 == 0){
+            console.log(total+num)
+            return total+num
+          }
+    }
+))
