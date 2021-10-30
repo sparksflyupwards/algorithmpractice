@@ -1,4 +1,4 @@
-class Solution(object):
+class Sort(object):
    
     def sortArray(this, array):
         if len(array) == 1 or len(array) == 0:
@@ -37,6 +37,11 @@ class Solution(object):
                 
                 
 
-            
-    
+import sys        
+sort = Sort()
+array_str = sys.argv[1:]
+map_object = map(int, array_str)
+array_int = list(map_object)
+
+print(sort.sortArray(array_int))
   
