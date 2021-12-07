@@ -20,11 +20,20 @@ class Product(object):
             total *= element
         return total
 
+    def whenBreak(self):
+        i=0
+        while(True):
+            if not self.basic([i,i]) == self.karatsuba([i,i]):
+                print("WE BROKE HERE"+ i)
+                return i
+            i = i +1
 
     def karatsuba(self, array):
 
         firstHalf = str(array[0])
         secondHalf = str(array[1])
+ 
+
         sizeFirstNum = len(firstHalf)
         a = firstHalf[ : len(firstHalf)//2]
         b = firstHalf[len(firstHalf)//2 : ]
@@ -37,8 +46,17 @@ class Product(object):
         c = int(c)
         d = int(d)
 
-        highProduct = a  * c
-        lowProduct = b * d
+
+        if(len(str(a)) > 4):
+            highProductNums = [a,c]
+            highProduct = self.karatsuba(highProductNums)
+            lowProductNums = [b,d]
+            lowProduct = self.karatsuba(lowProductNums)
+        else:
+            highProduct = a  * c
+            lowProduct = b * d
+
+        
         sumProduct = a + b
         sumProduct *= c + d
         difference = sumProduct - highProduct - lowProduct
@@ -46,20 +64,9 @@ class Product(object):
         product = highProduct * pow(10,sizeFirstNum) + lowProduct  + difference * pow(10,sizeFirstNum/2)
 
 
-
-        print(a)
-        print(b)
-
-        print(c)
-        print(d)
-
-        print(highProduct)
-        print(lowProduct)
-        print(sumProduct)
-        print(difference)
-        print("product: " + str(product))
-        print("karatsuba")
-        return 9
+        print("step: "+firstHalf + " * " + secondHalf + " = " + str(product))
+        print("step: "+firstHalf + " * " + secondHalf + " should = " + str(int(firstHalf)*int(secondHalf)))
+        return product
 
 
 import sys      
@@ -74,10 +81,11 @@ product = Product(sys.argv[2])
 file_name = sys.argv[1]
 f = open(file_name, "r")
 array_str = f.read().split()
-print(array_str)
 array_int = map(int, array_str)
 
 print(product.operate(array_int))
+
+#print(product.whenBreak())
 
 
 
