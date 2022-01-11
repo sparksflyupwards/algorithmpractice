@@ -96,6 +96,22 @@ class NodeList:
             
         return NodeList(self.head)
     
+    def bubbleSort(self):
+        isSorted = True
+        currentNode= self.head
+        prevNode = None
+        nextNode = None
+        while True:
+            #logic 
+            while(not currentNode == None):
+                nextNode = currentNode.next
+                if(nextNode == None):
+                    break
+                if nextNode.value>currentNode.value:
+                    prevNode.next = cu
+
+            if isSorted:
+                break
 
 
 def reverseListOld(list):
@@ -147,7 +163,7 @@ def mergeLists(l1,l2):
 
 l1 = NodeList(0)  
 l2 = NodeList(1)
-#mergeLists(l1,l2).printNodes()     
+#mergeLists(l1,l2).printNodes()   
 
 l1.addNode(Node(0))
 l1.addNode(Node(1))

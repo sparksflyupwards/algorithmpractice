@@ -13,16 +13,17 @@ let counter = ()=>{
 let newPromise = (callback, time)=>{
         return new Promise((resolve, reject)=>{ 
             setTimeout( ()=>{
-                resolve(callback())
+                resolve(callback)
             }, time)
         });
 }
 
-newPromise(counter, 1000)
+console.log(newPromise(counter, 1000)
 .then((data)=>newPromise(counter, 1000))
 .then(()=>newPromise(counter, 1000))
 .then(()=>newPromise(counter, 1000))
 .then(()=>newPromise(counter, 1000))
 .then(()=>newPromise(counter, 1000))
+)
 
 //console.log(newPromise(()=>console.log("ok"), 1000).then((data)=> console.log("then")))
