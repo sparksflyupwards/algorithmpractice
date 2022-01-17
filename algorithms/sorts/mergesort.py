@@ -1,4 +1,28 @@
+import time
+start_time = time.time()
+
 class Sort(object):
+
+    def insertionSort(this, array):
+        sortedArray = []
+         
+        for i in range(len(array)):
+            inserted = False
+            #print("inserting: " + str(array[i]))
+            for j in range(0, len(sortedArray)):
+
+                if sortedArray[j] > array[i]:
+                    sortedArray.insert(j, array[i])
+                    inserted = True
+                    #print("inserted")
+                    #print(sortedArray)
+                    break
+            if not inserted:
+                #print("inserted")
+                sortedArray.append(array[i])
+                #print(sortedArray)
+        #print(sortedArray)
+        return sortedArray
    
     def sortArray(this, array):
         if len(array) == 1 or len(array) == 0:
@@ -39,9 +63,19 @@ class Sort(object):
 
 import sys        
 sort = Sort()
-array_str = sys.argv[1:]
+
+sortType = sys.argv[1]
+array_str = sys.argv[2:]
 map_object = map(int, array_str)
 array_int = list(map_object)
+print("sort type: " + sortType)
 
-print(sort.sortArray(array_int))
-  
+if sortType == "merge":
+    print(sort.sortArray(array_int))
+elif sortType == "insertion":
+    print(sort.insertionSort(array_int))
+else:
+    print("insertion type not found")
+
+
+print "My program took", time.time() - start_time, "to run"
